@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".aplication.AddComponent">
+
+
+    <TextView
+        android:id="@+id/titleAddComponent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="70dp"
+        android:text="@string/label_addcomponent"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+
+    <EditText
+        android:id="@+id/referenceNumberAddComponent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/titleAddComponent"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="35dp"
+        android:layout_marginRight="30dp"
+        android:background="@drawable/border_addcomponent"
+        android:hint="@string/et_referenceNumber_addcomponent"
+        android:inputType="text"
+        android:padding="10dp"/>
+
+    <EditText
+        android:id="@+id/designationAddComponent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/referenceNumberAddComponent"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginRight="30dp"
+        android:background="@drawable/border_addcomponent"
+        android:hint="@string/et_name_addcomponent"
+        android:inputType="text"
+        android:padding="10dp"/>
+
+
+    <EditText
+        android:id="@+id/productTypeAddComponent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/designationAddComponent"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginRight="30dp"
+        android:background="@drawable/border_addcomponent"
+        android:hint="@string/product_type_add_component"
+        android:inputType="text"
+        android:padding="10dp"/>
+
+
+    <EditText
+        android:id="@+id/initialAmountAddComponent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/productTypeAddComponent"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginRight="30dp"
+        android:background="@drawable/border_addcomponent"
+        android:hint="@string/initial_amount_add_component"
+        android:inputType="number"
+        android:padding="10dp"/>
+
+    <TextView
+        android:id="@+id/labelSerialNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/initialAmountAddComponent"
+        android:layout_alignLeft="@+id/initialAmountAddComponent"
+        android:layout_marginTop="25dp"
+        android:layout_marginRight="20dp"
+        android:text="@string/is_serial_number_add_component"
+        android:textSize="19sp"/>
+    <CheckBox
+        android:id="@+id/checkboxYesAddComponent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/labelSerialNumber"
+        android:layout_marginTop="-12dp"
+        android:layout_toEndOf="@+id/labelSerialNumber"
+        android:layoutDirection="rtl"
+        android:text="@string/yes"
+        />
+    <CheckBox
+        android:id="@+id/checkboxNoAddComponent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/labelSerialNumber"
+        android:layout_marginTop="-12dp"
+        android:layout_toEndOf="@+id/checkboxYesAddComponent"
+        android:layoutDirection="rtl"
+        android:text="@string/no"
+        />
+
+
+    <Button
+        android:id="@+id/addDocumentsAddComponents"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/labelSerialNumber"
+        android:layout_alignLeft="@+id/initialAmountAddComponent"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="20dp"
+        android:backgroundTint="#D6D6D6"
+        android:enabled="false"
+        android:hint="@string/button_adddocuments"/>
+
+    <Button
+        android:id="@+id/insertComponentAddComponent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/addDocumentsAddComponents"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginBottom="20dp"
+        android:backgroundTint="#396287"
+        android:text="@string/button_Insert"
+        android:textColor="@color/white"
+        app:cornerRadius="20dp"
+        />
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="wrap_content"
+        android:layout_height="2dp"
+        android:layout_below="@+id/insertComponentAddComponent"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="-10dp"
+        android:layout_marginRight="40dp"
+        android:background="#B5B5B5"
+        />
+
+    <Button
+        android:id="@+id/bt_AssociateComponent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/view"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
+        android:backgroundTint="#396287"
+        android:onClick="sendToAssociateComponent"
+        android:text="@string/button_associateComponent"
+        android:textColor="@color/white"
+        app:cornerRadius="20dp"/>
+
+    <Button
+        android:id="@+id/btnHelpAddComponent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/bottom_navigation"
+        android:layout_marginLeft="317dp"
+        android:layout_marginBottom="7dp"
+        android:background="@android:color/transparent"
+        android:drawableEnd="@drawable/ic_baseline_help_24" />
+
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_alignParentBottom="true"
+        android:background="#404549"
+        app:itemIconSize="35dp"
+        app:itemIconTint="@color/white"
+        app:itemTextColor="@color/white"
+        app:labelVisibilityMode="labeled"
+        app:menu="@menu/bottom_navigation_menu" />
+
+</RelativeLayout>

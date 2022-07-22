@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nav_scan"
+        android:enabled="true"
+        android:icon="@drawable/ic_scan_icon"
+        android:onClick="onOptionsItemSelected"
+        android:title="@string/nav_scan"/>
+    <item
+        android:id="@+id/nav_add"
+        android:enabled="true"
+        android:icon="@drawable/ic_add_icon"
+        android:onClick="onOptionsItemSelected"
+        android:title="@string/nav_add"/>
+    <item
+        android:id="@+id/nav_list"
+        android:enabled="true"
+        android:icon="@drawable/ic_list_icon"
+        android:onClick="onOptionsItemSelected"
+        android:title="@string/nav_list"/>
+    <item
+        android:id="@+id/nav_pending"
+        android:enabled="true"
+        android:icon="@drawable/ic_pending_icon"
+        android:onClick="onOptionsItemSelected"
+        android:title="@string/nav_pending"/>
+</menu>

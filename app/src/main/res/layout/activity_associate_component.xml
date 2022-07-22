@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".aplication.AssociateComponent">
+
+
+    <ImageView
+        android:id="@+id/background"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerHorizontal="true"
+        android:alpha="0.4"
+        android:contentDescription="Logo"
+        android:scaleType="centerCrop"
+        android:src="@drawable/fundo" />
+
+
+    <TextView
+        android:id="@+id/titleAssociateComponent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginRight="30dp"
+        android:gravity="center"
+        android:text="@string/label_associatecomp"
+        android:textColor="#14567C"
+        android:textSize="25sp"
+        android:textStyle="bold"/>
+
+
+    <Spinner
+        android:id="@+id/parentAssociateComponent"
+        android:layout_width="250dp"
+        android:layout_height="43dp"
+        android:layout_below="@+id/titleAssociateComponent"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="80dp"
+        android:background="@drawable/border_addcomponent"/>
+
+
+    <Spinner
+        android:id="@+id/activityAssociateComponent"
+        android:layout_width="250dp"
+        android:layout_height="43dp"
+        android:layout_below="@+id/parentAssociateComponent"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="35dp"
+        android:background="@drawable/border_addcomponent"
+        />
+
+    <EditText
+        android:id="@+id/quantityAssociateComponent"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/activityAssociateComponent"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="35dp"
+        android:background="@drawable/border_addcomponent"
+        android:hint="@string/et_quantity"
+        android:inputType="number"
+        android:padding="10dp" />
+
+    <Button
+        android:id="@+id/addAssociateComponent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/bottom_navigation"
+        android:layout_alignEnd="@+id/bottom_navigation"
+        android:layout_margin="50dp"
+        android:backgroundTint="#396287"
+        android:onClick="createActivity"
+        android:padding="10dp"
+        android:text="@string/add"
+        android:textColor="@color/white"
+        android:textSize="17dp"
+        app:cornerRadius="20dp"
+        app:strokeColor="@color/white"
+        app:strokeWidth="2dp"/>
+
+    <Button
+        android:id="@+id/backAssociateComponent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/bottom_navigation"
+        android:layout_margin="50dp"
+        android:backgroundTint="#396287"
+        android:padding="10dp"
+        android:text="@string/back"
+        android:textColor="@color/white"
+        android:textSize="17dp"
+        app:cornerRadius="20dp"
+        app:strokeColor="@color/white"
+        app:strokeWidth="2dp"/>
+
+
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_alignParentBottom="true"
+        android:background="#404549"
+        app:itemIconSize="35dp"
+        app:itemIconTint="@color/white"
+        app:itemTextColor="@color/white"
+        app:labelVisibilityMode="labeled"
+        app:menu="@menu/bottom_navigation_menu" />
+
+
+</RelativeLayout>

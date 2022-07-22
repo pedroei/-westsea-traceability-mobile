@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".aplication.ListComponents">
+
+
+    <Spinner
+        android:id="@+id/filterListComp"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="80dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/list_line_border"
+        android:padding="10dp" />
+
+
+    <EditText
+        android:id="@+id/rnListComps"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_below="@+id/filterListComp"
+        android:layout_marginStart="80dp"
+        android:layout_marginEnd="80dp"
+        android:layout_marginBottom="35dp"
+        android:background="@drawable/list_line_border"
+        android:drawableEnd="@drawable/ic_search"
+        android:inputType="text"
+        android:padding="10dp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/listLine"
+        android:layout_width="match_parent"
+        android:layout_height="435dp"
+        android:layout_below="@+id/rnListComps" />
+
+    <pl.droidsonroids.gif.GifImageView
+        android:id="@+id/loading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rnListComps"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:src="@drawable/loader1"
+        android:visibility="invisible" />
+
+
+    <Button
+        android:id="@+id/btnHelpListComp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/bottom_navigation"
+        android:layout_marginLeft="317dp"
+        android:layout_marginBottom="7dp"
+        android:background="@android:color/transparent"
+        android:drawableEnd="@drawable/ic_baseline_help_24" />
+
+    <!--Nav Bar-->
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_alignParentBottom="true"
+        android:background="#404549"
+        app:itemIconSize="35dp"
+        app:itemIconTint="@color/white"
+        app:itemTextColor="@color/white"
+        app:labelVisibilityMode="labeled"
+        app:menu="@menu/bottom_navigation_menu" />
+
+</RelativeLayout>

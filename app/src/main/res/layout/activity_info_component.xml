@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".aplication.InfoComponent">
+
+    <TextView
+        android:id="@+id/nameTitleInfoComponent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="25dp"
+        android:text="@string/component"
+        android:textSize="22sp" />
+
+    <TextView
+        android:id="@+id/valueNameTitleInfoComponent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/nameTitleInfoComponent"
+        android:layout_marginLeft="10sp"
+        android:layout_toRightOf="@+id/nameTitleInfoComponent"
+        android:textSize="22sp" />
+
+    <View
+        android:id="@+id/infoComponentView"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_below="@+id/valueNameTitleInfoComponent"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="20dp"
+        android:background="@android:color/darker_gray" />
+
+
+    <RelativeLayout
+        android:id="@+id/relativeComponent"
+        android:layout_width="340dp"
+        android:layout_height="270dp"
+        android:layout_below="@+id/infoComponentView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="25dp"
+        android:background="@drawable/relative_border">
+
+        <ScrollView
+            android:id="@+id/ScrollView01"
+            android:layout_width="match_parent"
+            android:layout_height="665dp"
+            android:fastScrollAlwaysVisible="true"
+            android:scrollbarSize="10dp">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/referenceNumberCompInfoComponent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="25dp"
+                    android:text="@string/reference_number"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/valueReferenceNumberInfoComponent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@+id/referenceNumberCompInfoComponent"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toRightOf="@+id/referenceNumberCompInfoComponent"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/designationInfoComponent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/valueReferenceNumberInfoComponent"
+                    android:layout_alignLeft="@+id/referenceNumberCompInfoComponent"
+                    android:layout_marginTop="30dp"
+                    android:text="@string/designation"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/valueDesignationInfoComponent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@+id/designationInfoComponent"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toRightOf="@+id/designationInfoComponent"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/typeInfoComponent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/valueDesignationInfoComponent"
+                    android:layout_alignLeft="@+id/referenceNumberCompInfoComponent"
+                    android:layout_marginTop="30dp"
+                    android:text="@string/product_type"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/valueTypeInfoComponent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@+id/typeInfoComponent"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toRightOf="@+id/typeInfoComponent"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/quantidadeInfoComponent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/valueTypeInfoComponent"
+                    android:layout_alignLeft="@+id/referenceNumberCompInfoComponent"
+                    android:layout_marginTop="30dp"
+                    android:text="@string/avaAmount"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/valueQuantidadeInfoComponent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@+id/quantidadeInfoComponent"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toRightOf="@+id/quantidadeInfoComponent"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/showDocumentsInfoComponent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/valueQuantidadeInfoComponent"
+                    android:layout_alignLeft="@id/referenceNumberCompInfoComponent"
+                    android:layout_marginTop="40dp"
+                    android:layout_marginBottom="10dp"
+                    android:text="@string/tv_show_documents"
+                    android:textColor="@color/red" />
+
+            </RelativeLayout>
+        </ScrollView>
+
+    </RelativeLayout>
+
+
+    <TextView
+        android:id="@+id/associatedComponentesInfoComponent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/relativeComponent"
+        android:layout_alignLeft="@+id/nameTitleInfoComponent"
+        android:layout_marginTop="10dp"
+        android:text="@string/associated_components"
+        android:textSize="15sp"
+        android:textStyle="bold" />
+
+    <pl.droidsonroids.gif.GifImageView
+        android:id="@+id/loadingInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/associatedComponentesInfoComponent"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:src="@drawable/loader1"
+        android:visibility="invisible" />
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/listAssoComp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/btnAddAssociatedComponent"
+        android:layout_below="@+id/associatedComponentesInfoComponent" />
+
+    <TextView
+        android:id="@+id/noInfoAssociatedComponents"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/associatedComponentesInfoComponent"
+        android:layout_alignLeft="@+id/associatedComponentesInfoComponent"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:text="@string/noAssociatedComponents"
+        android:textColor="#AB3333"
+        android:textSize="15sp"
+        android:visibility="invisible" />
+
+
+    <Button
+        android:id="@+id/btnAddAssociatedComponent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/bottom_navigation"
+        android:layout_marginLeft="310dp"
+        android:background="@android:color/transparent"
+        android:drawableEnd="@drawable/ic_baseline_add_circle_24"
+        android:onClick="sendToAdd" />
+
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_alignParentBottom="true"
+        android:background="#404549"
+        app:itemIconSize="35dp"
+        app:itemIconTint="@color/white"
+        app:itemTextColor="@color/white"
+        app:labelVisibilityMode="labeled"
+        app:menu="@menu/bottom_navigation_menu" />
+
+</RelativeLayout>

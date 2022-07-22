@@ -1,0 +1,359 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".aplication.InfoComponent">
+
+    <TextView
+        android:id="@+id/nameTitleInfoComponentP"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/component"
+        android:textSize="22sp" />
+
+    <TextView
+        android:id="@+id/valueNameTitleInfoComponentP"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/nameTitleInfoComponentP"
+        android:layout_marginLeft="10sp"
+        android:layout_toRightOf="@+id/nameTitleInfoComponentP"
+        android:textSize="22sp" />
+
+    <View
+        android:id="@+id/infoComponentViewP"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_below="@+id/nameTitleInfoComponentP"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="20dp"
+        android:background="@android:color/darker_gray" />
+
+    <RelativeLayout
+        android:id="@+id/painel"
+        android:layout_width="340dp"
+        android:layout_height="490dp"
+        android:layout_below="@+id/infoComponentViewP"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/relative_border">
+
+        <ScrollView
+            android:id="@+id/ScrollView01"
+            android:layout_width="match_parent"
+            android:layout_height="665dp"
+            android:fastScrollAlwaysVisible="true"
+            android:scrollbarSize="10dp">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="490dp">
+
+                <TextView
+                    android:id="@+id/referenceNumberPending"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="25dp"
+                    android:text="@string/reference_number"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/valueReferenceNumberPending"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@+id/referenceNumberPending"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toRightOf="@+id/referenceNumberPending"
+                    android:background="@android:color/transparent"
+                    android:enabled="false"
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/designationPending"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/referenceNumberPending"
+                    android:layout_alignLeft="@+id/referenceNumberPending"
+                    android:layout_marginTop="30dp"
+                    android:text="@string/designation"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/valueDesignationPending"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@+id/designationPending"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toRightOf="@+id/designationPending"
+                    android:background="@android:color/transparent"
+                    android:enabled="false"
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/productTypePending"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/designationPending"
+                    android:layout_alignLeft="@+id/referenceNumberPending"
+                    android:layout_marginTop="30dp"
+                    android:text="@string/product_type"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/valueProductTypePending"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@+id/productTypePending"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toRightOf="@+id/productTypePending"
+                    android:background="@android:color/transparent"
+                    android:enabled="false"
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/initialAmountPending"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/productTypePending"
+                    android:layout_alignLeft="@+id/referenceNumberPending"
+                    android:layout_marginTop="30dp"
+                    android:text="@string/initial_amout"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/valueInitialAmountPending"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@+id/initialAmountPending"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toRightOf="@+id/initialAmountPending"
+                    android:background="@android:color/transparent"
+                    android:enabled="false"
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/idPending"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/valueInitialAmountPending"
+                    android:layout_alignLeft="@+id/referenceNumberPending"
+                    android:layout_marginTop="30dp"
+                    android:text="@string/parentId"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/valueIdPending"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@+id/idPending"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toRightOf="@+id/idPending"
+                    android:background="@android:color/transparent"
+                    android:enabled="false"
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/quantidadePending"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/valueIdPending"
+                    android:layout_alignLeft="@+id/referenceNumberPending"
+                    android:layout_marginTop="30dp"
+                    android:text="@string/quantidadeParent"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/valueQuantidadePending"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@+id/quantidadePending"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toRightOf="@+id/quantidadePending"
+                    android:background="@android:color/transparent"
+                    android:enabled="false"
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/designationActivityPending"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/valueQuantidadePending"
+                    android:layout_alignLeft="@+id/referenceNumberPending"
+                    android:layout_marginTop="30dp"
+                    android:text="@string/designationActivityPending"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/valueDesignationActivityPending"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@+id/designationActivityPending"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toRightOf="@+id/designationActivityPending"
+                    android:background="@android:color/transparent"
+                    android:enabled="false"
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/labelSerialNumber"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/valueDesignationActivityPending"
+                    android:layout_alignLeft="@+id/referenceNumberPending"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginRight="20dp"
+                    android:text="@string/is_serial_number_add_component"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <CheckBox
+                    android:id="@+id/checkboxYesPending"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@+id/labelSerialNumber"
+                    android:layout_marginTop="-12dp"
+                    android:layout_toEndOf="@+id/labelSerialNumber"
+                    android:buttonTint="@color/black"
+                    android:enabled="false"
+                    android:layoutDirection="rtl"
+                    android:text="@string/yes"
+                    android:textColor="@color/black" />
+
+                <CheckBox
+                    android:id="@+id/checkboxNoPending"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@+id/labelSerialNumber"
+                    android:layout_marginTop="-12dp"
+                    android:layout_toEndOf="@+id/checkboxYesPending"
+                    android:buttonTint="@color/black"
+                    android:enabled="false"
+                    android:layoutDirection="rtl"
+                    android:text="@string/no"
+                    android:textColor="@color/black" />
+
+
+                <RelativeLayout
+                    android:id="@+id/buttonOKComponent"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_below="@+id/checkboxNoPending"
+                    android:layout_marginLeft="280dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="20dp"
+                    android:background="@drawable/rounded_btt"
+                    android:visibility="invisible">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"
+                        android:text="@string/zxing_button_ok"
+                        android:textColor="@color/white" />
+                </RelativeLayout>
+            </RelativeLayout>
+        </ScrollView>
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:id="@+id/buttonsLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/bottom_navigation"
+        android:layout_below="@+id/painel">
+
+        <Button
+            android:id="@+id/buttonEditComponent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="50dp"
+            android:layout_marginEnd="10dp"
+            android:layout_weight="1"
+            android:backgroundTint="#DAB535"
+            android:orientation="vertical"
+            android:padding="10dp"
+            android:text="@string/editComponent"
+            android:textColor="#FFFFFF"
+            app:cornerRadius="20dp"
+            app:strokeWidth="1dp" />
+
+        <Button
+            android:id="@+id/buttonDeleteComponent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_weight="1"
+            android:backgroundTint="#C73D3D"
+            android:orientation="vertical"
+            android:padding="10dp"
+            android:text="@string/delete"
+            android:textColor="#FFFFFF"
+            app:cornerRadius="20dp"
+            app:strokeWidth="1dp" />
+
+        <Button
+            android:id="@+id/buttonSendComponent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="50dp"
+            android:layout_weight="1"
+            android:backgroundTint="#139F5C"
+            android:orientation="vertical"
+            android:padding="10dp"
+            android:text="@string/sendComponent"
+            android:textColor="#FFFFFF"
+            app:cornerRadius="20dp"
+            app:strokeWidth="1dp" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnHelpPengingComponent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/bottom_navigation"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="7dp"
+        android:background="@android:color/transparent"
+        android:drawableEnd="@drawable/ic_baseline_help_24" />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_alignParentBottom="true"
+        android:background="#404549"
+        app:itemIconSize="35dp"
+        app:itemIconTint="@color/white"
+        app:itemTextColor="@color/white"
+        app:labelVisibilityMode="labeled"
+        app:menu="@menu/bottom_navigation_menu" />
+
+</RelativeLayout>
