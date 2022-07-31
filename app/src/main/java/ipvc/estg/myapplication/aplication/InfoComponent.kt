@@ -35,7 +35,6 @@ class InfoComponent : AppCompatActivity() {
 
     private lateinit var myList: ArrayList<ListAssoComp>
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_info_component)
@@ -47,8 +46,7 @@ class InfoComponent : AppCompatActivity() {
 
     }
 
-
-    suspend fun getProduct(referenceNumber: String) {
+    private suspend fun getProduct(referenceNumber: String) {
 
         val loading = findViewById<GifImageView>(R.id.loadingInfo)
         runOnUiThread {
@@ -62,9 +60,10 @@ class InfoComponent : AppCompatActivity() {
         val token = sharedPreferences.getString("token", "")
 
         val request = ServiceBuilder.buildService(APIService::class.java)
-        val call = request.getProductByRN("Bearer $token", referenceNumber)
+        val call = request.getAllProducts("Bearer $token")
         val doc: ArrayList<String> = ArrayList()
 
+        var allProducts: List<Product> = emptyList<Product>()
         var product = Product(
             "",
             "",
@@ -77,13 +76,15 @@ class InfoComponent : AppCompatActivity() {
             ""
         )
 
-        call.enqueue(object : Callback<Product> {
+        call.enqueue(object : Callback<List<Product>> {
             override fun onResponse(
-                call: Call<Product>,
-                response: Response<Product>
+                call: Call<List<Product>>,
+                response: Response<List<Product>>
             ) {
                 if (response.isSuccessful) {
+                    allProducts = response.body()!!
                     product = response.body()!!
+                        .filter { it.referenceNumber == referenceNumber }[0]
                     canGO = true
                 } else {
                     createPopUp(getString(R.string.invalid_token))
@@ -92,7 +93,7 @@ class InfoComponent : AppCompatActivity() {
 
             }
 
-            override fun onFailure(call: Call<Product>, t: Throwable) {
+            override fun onFailure(call: Call<List<Product>>, t: Throwable) {
                 canGO = true
                 Toast.makeText(this@InfoComponent, "${t.message}", Toast.LENGTH_SHORT).show()
             }
@@ -117,15 +118,10 @@ class InfoComponent : AppCompatActivity() {
             valueNameTitleInfoComponent.text = product.designation
         }
 
-
-        getProducts()
+        getProducts(product, allProducts)
     }
 
-    suspend fun getProducts() {
-
-        val referenceNumber = intent.getStringExtra(PARAM_Reference_Number).toString()
-        val componentDad = getComponent(referenceNumber)
-
+    private suspend fun getProducts(currComponent: Product, allProducts: List<Product>) {
         var canGO = false
 
         val sharedPreferences: SharedPreferences =
@@ -157,7 +153,6 @@ class InfoComponent : AppCompatActivity() {
                 Toast.makeText(this@InfoComponent, "${t.message}", Toast.LENGTH_SHORT).show()
             }
 
-
         })
 
         while (!canGO) {
@@ -168,20 +163,27 @@ class InfoComponent : AppCompatActivity() {
             loading.visibility = View.INVISIBLE
             myList = ArrayList()
             if (products.isNotEmpty()) {
-                for (product in products) {
-                    if (!product.inputProductLots[componentDad].isNullOrEmpty()) {
-                        myList.add(
-                            ListAssoComp(
-                                product.outputProductLot.referenceNumber,
-                                product.outputProductLot.designation,
-                                product.outputProductLot.productType
-                            )
-                        )
-                    }
+                for (activity in products) {
+                    if (activity.outputProductLot.referenceNumber == currComponent.referenceNumber)
+                        for (input in activity.inputProductLots.keys) {
+                            val inputComp = allProducts.find { it.ID.equals(input) }
+                            if (inputComp != null) {
+                                myList.add(
+                                    ListAssoComp(
+                                        inputComp.referenceNumber,
+                                        "${inputComp.designation} (x${
+                                            activity.inputProductLots.get(
+                                                input
+                                            )
+                                        })",
+                                        inputComp.productType
+                                    )
+                                )
+                            }
+                        }
                 }
                 listAssoComp.adapter = ListAssoCompAdapter(myList)
                 listAssoComp.layoutManager = LinearLayoutManager(this@InfoComponent)
-
 
             }
             if (myList.isEmpty()) {
@@ -205,58 +207,6 @@ class InfoComponent : AppCompatActivity() {
         }
 
     }
-
-
-    suspend fun getComponent(referenceNumber: String): String {
-        var canGO = false
-
-        val sharedPreferences: SharedPreferences =
-            getSharedPreferences("tokenSP", Context.MODE_PRIVATE)
-        val token = sharedPreferences.getString("token", "")
-
-        val request = ServiceBuilder.buildService(APIService::class.java)
-        val call = request.getProductByRN("Bearer $token", referenceNumber)
-        val doc: ArrayList<String> = ArrayList()
-
-        var product = Product(
-            "",
-            "",
-            false,
-            "",
-            "",
-            0,
-            0,
-            doc,
-            ""
-        )
-
-        call.enqueue(object : Callback<Product> {
-            override fun onResponse(
-                call: Call<Product>,
-                response: Response<Product>
-            ) {
-                if (response.isSuccessful) {
-                    product = response.body()!!
-                    canGO = true
-                } else {
-                    createPopUp(getString(R.string.invalid_token))
-                    canGO = true
-                }
-
-            }
-
-            override fun onFailure(call: Call<Product>, t: Throwable) {
-                canGO = true
-                Toast.makeText(this@InfoComponent, "${t.message}", Toast.LENGTH_SHORT).show()
-            }
-        })
-
-        while (!canGO) {
-            delay(1)
-        }
-        return product.ID
-    }
-
 
     fun createPopUp(msg: String) {
         val dialog = Dialog(this@InfoComponent)

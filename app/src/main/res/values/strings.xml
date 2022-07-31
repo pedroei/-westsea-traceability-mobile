@@ -35,7 +35,7 @@
     <string name="product">PRODUCT:</string>
     <string name="material">MATERIAL:</string>
     <string name="tv_show_documents"><u>Associated documents</u></string>
-    <string name="associated_components">Associated Components:</string>
+    <string name="associated_components">Input components:</string>
     <string name="pending">Pending</string>
     <string name="sendComponent">Send</string>
     <string name="editComponent">Edit</string>
@@ -61,7 +61,7 @@
     <string name="dialog_list_comp">In this list you can see the different components. What is the designation, the type of product and the reference number.</string>
     <string name="dialog_list_comp_pending">In this list you can see the different pending components. What is the designation, the type of product and the reference number.</string>
     <string name="dialog_add_component">Here you can manually insert a component by entering the different fields. On this page, you can also associate this newly inserted component with a parent component.</string>
-    <string name="noAssociatedComponents">No Associated Components</string>
+    <string name="noAssociatedComponents">No Input Components</string>
     <string name="parentId">PARENT ID:</string>
     <string name="quantidadeParent">QUANTITY PARENT:</string>
     <string name="designationActivityPending">DESIGNATION ACTIVITY:</string>

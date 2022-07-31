@@ -50,6 +50,7 @@
         <entry key="..\:/Users/Vale/AndroidStudioProjects/westsea_mobileapp/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.2595" />
         <entry key="app/src/main/res/layout/activity_add_component.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_associate_component.xml" value="0.2796875" />
+        <entry key="app/src/main/res/layout/activity_info_component.xml" value="0.3375" />
         <entry key="app/src/main/res/layout/activity_list_pending.xml" value="0.3323076923076923" />
         <entry key="app/src/main/res/layout/choose_activity_designation.xml" value="0.3312820512820513" />
         <entry key="app/src/main/res/menu/bottom_navigation_menu.xml" value="0.3323076923076923" />

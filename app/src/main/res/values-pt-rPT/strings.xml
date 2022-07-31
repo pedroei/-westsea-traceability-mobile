@@ -36,7 +36,7 @@
     <string name="product">PRODUTO:</string>
     <string name="material">MATERIAL:</string>
     <string name="tv_show_documents">Documentos associados</string>
-    <string name="associated_components">Componentes associados:</string>
+    <string name="associated_components">Componentes de input:</string>
     <string name="pending">Pendente</string>
     <string name="sendComponent">Enviar</string>
     <string name="editComponent">Editar</string>
@@ -62,7 +62,7 @@
     <string name="dialog_list_comp">Nesta lista é possível observar os diferentes componentes. Qual a designação, o tipo de produto e o número de referência.</string>
     <string name="dialog_list_comp_pending">Nesta lista é possível observar os diferentes componentes pendentes. Qual a designação, o tipo de produto e o número de referência.</string>
     <string name="dialog_add_component">Aqui poderá inserir manualmente um componente inserindo aos diferentes campos. Nesta página, também poderá associar este componente acabado de inserir a um componente pai.</string>
-    <string name="noAssociatedComponents">Sem componentes associados</string>
+    <string name="noAssociatedComponents">Sem componentes de input</string>
     <string name="parentId">ID DO PAI:</string>
     <string name="quantidadeParent">QUANTIDADE GASTA:</string>
     <string name="designationActivityPending">DESIGNAÇÃO DA ATIVIDADE:</string>

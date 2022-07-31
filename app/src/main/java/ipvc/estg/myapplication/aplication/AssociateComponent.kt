@@ -7,7 +7,6 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.graphics.Color
 import android.os.Bundle
-import android.util.Log
 import android.view.*
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
@@ -22,7 +21,6 @@ import ipvc.estg.myapplication.models.Product
 import kotlinx.android.synthetic.main.activity_associate_component.*
 import kotlinx.android.synthetic.main.pop_up.*
 import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
@@ -331,58 +329,6 @@ class AssociateComponent : AppCompatActivity() {
             show()
         }
     }
-
-    suspend fun getProduct(referenceNumber: String): Product {
-
-        var canGO = false
-
-        val sharedPreferences: SharedPreferences =
-            getSharedPreferences("tokenSP", Context.MODE_PRIVATE)
-        val token = sharedPreferences.getString("token", "")
-
-        val request = ServiceBuilder.buildService(APIService::class.java)
-        val call = request.getProductByRN("Bearer $token", referenceNumber)
-        val doc: ArrayList<String> = ArrayList()
-
-        var product = Product(
-            "",
-            "",
-            false,
-            "",
-            "",
-            0,
-            0,
-            doc,
-            ""
-        )
-
-        call.enqueue(object : Callback<Product> {
-            override fun onResponse(
-                call: Call<Product>,
-                response: Response<Product>
-            ) {
-                if (response.isSuccessful) {
-                    product = response.body()!!
-                    canGO = true
-                } else {
-                    createPopUpErro(getString(R.string.errorDontExistRN))
-                    canGO = true
-                }
-
-            }
-
-            override fun onFailure(call: Call<Product>, t: Throwable) {
-                canGO = true
-                Toast.makeText(this@AssociateComponent, "${t.message}", Toast.LENGTH_SHORT).show()
-            }
-        })
-
-        while (!canGO) {
-            delay(1)
-        }
-        return product
-    }
-
 
     fun createPopUp(msg: String) {
         val dialog = Dialog(this@AssociateComponent)

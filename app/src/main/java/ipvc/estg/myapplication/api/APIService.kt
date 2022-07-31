@@ -26,18 +26,12 @@ interface APIService {
     @POST("/api/v1/traceability/activity")
     fun createActivity(
         @Header("Authorization") authHeader: String?,
-        @Body body : CreateActivity
-    ):Call<String>
+        @Body body: CreateActivity
+    ): Call<String>
 
     @GET("/api/v1/traceability/product")
     fun getAllProducts(
         @Header("Authorization") authHeader: String?
     ): Call<List<Product>>
-
-    @GET("/api/v1/traceability/{referenceNumber}")
-    fun getProductByRN(
-        @Header("Authorization") authHeader: String?,
-        @Path("referenceNumber") referenceNumber: String,
-    ): Call<Product>
 }
 
