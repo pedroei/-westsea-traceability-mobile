@@ -85,11 +85,11 @@ class ScanQRCode : AppCompatActivity() {
                 startActivity(intent)
                 true
             }
-            R.id.nav_pending -> {
-                val intent = Intent(this@ScanQRCode, ListPending::class.java)
-                startActivity(intent)
-                true
-            }
+//            R.id.nav_pending -> {
+//                val intent = Intent(this@ScanQRCode, ListPending::class.java)
+//                startActivity(intent)
+//                true
+//            }
             else -> {
                 super.onOptionsItemSelected(item)
             }

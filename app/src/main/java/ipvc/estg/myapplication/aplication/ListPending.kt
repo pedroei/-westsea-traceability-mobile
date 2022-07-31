@@ -240,9 +240,9 @@ class ListPending : AppCompatActivity() {
                 startActivity(intent)
                 true
             }
-            R.id.nav_pending -> {
-                true
-            }
+//            R.id.nav_pending -> {
+//                true
+//            }
             else -> {
                 Log.d("teste", "entrou")
                 super.onOptionsItemSelected(item)

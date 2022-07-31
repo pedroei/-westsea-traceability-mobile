@@ -6,7 +6,7 @@
     <string name="scanRFID">Scan RFID</string>
     <string name="scanQR">Scan QR Code</string>
     <string name="nav_scan">Scan</string>
-    <string name="nav_add">Add Parent</string>
+    <string name="nav_add">Add Component</string>
     <string name="nav_list">List</string>
     <string name="nav_pending">Pending</string>
     <string name="logout_button">Logout</string>
@@ -19,8 +19,8 @@
     <string name="et_date_addcomponent">Date</string>
     <string name="button_adddocuments">Insert Documents/Certificates</string>
     <string name="button_Insert">Insert</string>
-    <string name="button_associateComponent">Add to existing component</string>
-    <string name="label_associatecomp">Choose the component you want to add to</string>
+    <string name="button_associateComponent">Add to existing components</string>
+    <string name="label_associatecomp">Choose the components that created this new one</string>
     <string name="et_childcomponent">Child Component</string>
     <string name="et_parentcomponent">Parent Reference Number</string>
     <string name="et_activity">Activity</string>
@@ -68,4 +68,10 @@
     <string name="avaAmount">AVAILABLE AMOUNT:</string>
     <string name="dialog_pending_component">On this page you can see all the information associated with this pending component. In both buttons you can edit the component data or send it to the final list.</string>
     <string name="delete">Delete</string>
+    <string name="add_some_component">Please add at least one input component</string>
+    <string name="add_some_activity_and_component">Please add the activity name and at least one input component</string>
+    <string name="choose_activity">Choose the activity name</string>
+    <string name="ok">Ok</string>
+    <string name="cancel">Cancel</string>
+    <string name="provide_info">Please provide the necessary information</string>
 </resources>

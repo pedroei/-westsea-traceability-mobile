@@ -18,10 +18,10 @@
         android:icon="@drawable/ic_list_icon"
         android:onClick="onOptionsItemSelected"
         android:title="@string/nav_list"/>
-    <item
-        android:id="@+id/nav_pending"
-        android:enabled="true"
-        android:icon="@drawable/ic_pending_icon"
-        android:onClick="onOptionsItemSelected"
-        android:title="@string/nav_pending"/>
+<!--    <item-->
+<!--        android:id="@+id/nav_pending"-->
+<!--        android:enabled="true"-->
+<!--        android:icon="@drawable/ic_pending_icon"-->
+<!--        android:onClick="onOptionsItemSelected"-->
+<!--        android:title="@string/nav_pending"/>-->
 </menu>

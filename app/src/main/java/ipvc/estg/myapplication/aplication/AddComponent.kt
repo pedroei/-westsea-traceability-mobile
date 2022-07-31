@@ -27,7 +27,7 @@ class AddComponent : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_component)
 
-        checkboxYesAddComponent.isChecked = true
+        checkboxNoAddComponent.isChecked = true
         checkboxYesAddComponent.setOnClickListener {
             checkboxYesAddComponent.isChecked = true
             checkboxNoAddComponent.isChecked = false
@@ -65,11 +65,11 @@ class AddComponent : AppCompatActivity() {
                 startActivity(intent)
                 true
             }
-            R.id.nav_pending -> {
-                val intent = Intent(this@AddComponent, ListPending::class.java)
-                startActivity(intent)
-                true
-            }
+//            R.id.nav_pending -> {
+//                val intent = Intent(this@AddComponent, ListPending::class.java)
+//                startActivity(intent)
+//                true
+//            }
             else -> {
                 super.onOptionsItemSelected(item)
             }

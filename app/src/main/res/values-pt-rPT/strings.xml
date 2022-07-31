@@ -69,4 +69,10 @@
     <string name="avaAmount">QUANTIDADE DIPONÍVEL:</string>
     <string name="dialog_pending_component">Nesta página pode observar toda a informação associada a este componente pendentes. Nos dois botões poderá editar os dados do componente ou enviá-lo para a lista final.</string>
     <string name="delete">Apagar</string>
+    <string name="add_some_component">Por favor adicione pelo menos um componente de input</string>
+    <string name="add_some_activity_and_component">Por favor adicione o nome da atividade e, pelo menos um componente de input</string>
+    <string name="choose_activity">Escolha o nome da atividade</string>
+    <string name="ok">Ok</string>
+    <string name="cancel">Cancelar</string>
+    <string name="provide_info">Por favor adicione a informação necessaria</string>
 </resources>
