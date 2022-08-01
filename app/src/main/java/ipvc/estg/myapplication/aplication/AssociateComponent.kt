@@ -16,7 +16,7 @@ import ipvc.estg.myapplication.api.APIService
 import ipvc.estg.myapplication.api.ServiceBuilder
 import ipvc.estg.myapplication.models.ActivityDesignation
 import ipvc.estg.myapplication.models.CreateActivity
-import ipvc.estg.myapplication.models.OutputProductLot
+import ipvc.estg.myapplication.models.CreateProductLot
 import ipvc.estg.myapplication.models.Product
 import kotlinx.android.synthetic.main.activity_associate_component.*
 import kotlinx.android.synthetic.main.pop_up.*
@@ -273,7 +273,7 @@ class AssociateComponent : AppCompatActivity() {
                         getSharedPreferences("tokenSP", Context.MODE_PRIVATE)
                     val token = sharedPreferences.getString("token", "")
 
-                    val outputProductLot = OutputProductLot(
+                    val outputProductLot = CreateProductLot(
                         referenceNumber,
                         isSerialNumber,
                         designation,

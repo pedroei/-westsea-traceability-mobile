@@ -127,10 +127,10 @@
         android:layout_marginRight="50dp"
         android:layout_marginBottom="20dp"
         android:backgroundTint="#396287"
+        android:onClick="createProduct"
         android:text="@string/button_Insert"
         android:textColor="@color/white"
-        app:cornerRadius="20dp"
-        />
+        app:cornerRadius="20dp" />
 
     <View
         android:id="@+id/view"
@@ -154,7 +154,7 @@
         android:onClick="sendToAssociateComponent"
         android:text="@string/button_associateComponent"
         android:textColor="@color/white"
-        app:cornerRadius="20dp"/>
+        app:cornerRadius="20dp" />
 
     <Button
         android:id="@+id/btnHelpAddComponent"

@@ -1,9 +1,6 @@
 package ipvc.estg.myapplication.api
 
-import ipvc.estg.myapplication.models.ActivityDesignation
-import ipvc.estg.myapplication.models.CreateActivity
-import ipvc.estg.myapplication.models.Product
-import ipvc.estg.myapplication.models.Token
+import ipvc.estg.myapplication.models.*
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -27,6 +24,12 @@ interface APIService {
     fun createActivity(
         @Header("Authorization") authHeader: String?,
         @Body body: CreateActivity
+    ): Call<String>
+
+    @POST("/api/v1/traceability/product")
+    fun createProduct(
+        @Header("Authorization") authHeader: String?,
+        @Body body: CreateProductLot
     ): Call<String>
 
     @GET("/api/v1/traceability/product")

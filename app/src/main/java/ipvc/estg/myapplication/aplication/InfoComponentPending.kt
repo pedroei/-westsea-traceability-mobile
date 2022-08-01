@@ -19,7 +19,7 @@ import ipvc.estg.myapplication.R
 import ipvc.estg.myapplication.api.APIService
 import ipvc.estg.myapplication.api.ServiceBuilder
 import ipvc.estg.myapplication.models.CreateActivity
-import ipvc.estg.myapplication.models.OutputProductLot
+import ipvc.estg.myapplication.models.CreateProductLot
 import ipvc.estg.myapplication.viewModel.ComponenteViewModel
 import ipvc.estg.myapplication.viewModel.ComponenteViewModelFactory
 import kotlinx.android.synthetic.main.activity_info_component_pending.*
@@ -214,7 +214,7 @@ class InfoComponentPending : AppCompatActivity() {
 
                     inputProductLots[it.id] = it.quantidade
 
-                    val outputProductLot = OutputProductLot(
+                    val outputProductLot = CreateProductLot(
                         it.referenceNumber,
                         it.isSerialNumber,
                         it.designation,
