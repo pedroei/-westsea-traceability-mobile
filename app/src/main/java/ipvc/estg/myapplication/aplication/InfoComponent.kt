@@ -17,6 +17,7 @@ import ipvc.estg.myapplication.adapters.ListAssoCompAdapter
 import ipvc.estg.myapplication.api.APIService
 import ipvc.estg.myapplication.api.ServiceBuilder
 import ipvc.estg.myapplication.models.CreateActivity
+import ipvc.estg.myapplication.models.Documentkey
 import ipvc.estg.myapplication.models.ListAssoComp
 import ipvc.estg.myapplication.models.Product
 import kotlinx.android.synthetic.main.activity_info_component.*
@@ -61,7 +62,7 @@ class InfoComponent : AppCompatActivity() {
 
         val request = ServiceBuilder.buildService(APIService::class.java)
         val call = request.getAllProducts("Bearer $token")
-        val doc: ArrayList<String> = ArrayList()
+        val doc: ArrayList<Documentkey> = ArrayList()
 
         var allProducts: List<Product> = emptyList<Product>()
         var product = Product(
@@ -164,7 +165,7 @@ class InfoComponent : AppCompatActivity() {
             myList = ArrayList()
             if (products.isNotEmpty()) {
                 for (activity in products) {
-                    if (activity.outputProductLot.referenceNumber == currComponent.referenceNumber)
+                    if (activity.outputReferenceNumber == currComponent.referenceNumber)
                         for (input in activity.inputProductLots.keys) {
                             val inputComp = allProducts.find { it.ID.equals(input) }
                             if (inputComp != null) {

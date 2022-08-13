@@ -14,12 +14,14 @@ import ipvc.estg.myapplication.MainActivity
 import ipvc.estg.myapplication.R
 import ipvc.estg.myapplication.api.APIService
 import ipvc.estg.myapplication.api.ServiceBuilder
-import ipvc.estg.myapplication.models.CreateActivity
 import ipvc.estg.myapplication.models.CreateProductLot
 import kotlinx.android.synthetic.main.activity_add_component.*
 import kotlinx.android.synthetic.main.pop_up.*
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.MultipartBody
+import okhttp3.RequestBody.Companion.toRequestBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -238,7 +240,22 @@ class AddComponent : AppCompatActivity() {
             )
 
             val request = ServiceBuilder.buildService(APIService::class.java)
-            val call = request.createProduct("Bearer $token", createProductLot)
+
+            val requestBody = MultipartBody.Builder().setType(MultipartBody.FORM).apply {
+                addFormDataPart("referenceNumber", (createProductLot.referenceNumber))
+                addFormDataPart("isSerialNumber", (createProductLot.isSerialNumber.toString()))
+                addFormDataPart("designation", (createProductLot.designation))
+                addFormDataPart("productType", (createProductLot.productType))
+                addFormDataPart("initialAmount", (createProductLot.initialAmount.toString()))
+
+                if (createProductLot.documents.isNotEmpty()) {
+                    createProductLot.documents.forEachIndexed { index, file ->
+                        addFormDataPart("documents", "$index." + file.extension, file.readBytes().toRequestBody("multipart/form-data".toMediaTypeOrNull(), 0, file.readBytes().size))
+                    }
+                }
+            }.build()
+
+            val call = request.createProduct("Bearer $token", requestBody)
 
             call.enqueue(object : Callback<String> {
                 override fun onResponse(call: Call<String>, response: Response<String>) {
@@ -262,4 +279,5 @@ class AddComponent : AppCompatActivity() {
         }
     }
 
+    fun insertDocuments(view: View) {}
 }

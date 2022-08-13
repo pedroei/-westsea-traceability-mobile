@@ -18,7 +18,7 @@
     <string name="et_description_addcomponent">Descrição</string>
     <string name="et_filters_addcomponent">Filtros</string>
     <string name="et_date_addcomponent">Data</string>
-    <string name="button_adddocuments">Inserir Documentos/Certificados</string>
+    <string name="button_adddocuments">Inserir Documentos</string>
     <string name="button_Insert">Inserir</string>
     <string name="button_associateComponent">Adicionar a componente existente</string>
     <string name="label_associatecomp">Escolha o componente ao qual deseja adicionar</string>

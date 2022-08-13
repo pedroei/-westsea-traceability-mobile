@@ -1,10 +1,12 @@
 package ipvc.estg.myapplication.models
 
+import java.io.File
+
 data class CreateProductLot(
     val referenceNumber: String,
     val isSerialNumber: Boolean,
     val designation: String,
     val productType: String,
     val initialAmount: Int,
-    val documentKeys: ArrayList<String>
+    val documents: ArrayList<File>
 )

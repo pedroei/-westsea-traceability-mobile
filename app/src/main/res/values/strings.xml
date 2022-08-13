@@ -17,7 +17,7 @@
     <string name="et_material_addcomponent">Material</string>
     <string name="et_filters_addcomponent">Filters</string>
     <string name="et_date_addcomponent">Date</string>
-    <string name="button_adddocuments">Insert Documents/Certificates</string>
+    <string name="button_adddocuments">Insert Documents</string>
     <string name="button_Insert">Insert</string>
     <string name="button_associateComponent">Add to existing components</string>
     <string name="label_associatecomp">Choose the components that created this new one</string>

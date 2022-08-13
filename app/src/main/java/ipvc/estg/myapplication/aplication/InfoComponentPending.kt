@@ -26,6 +26,9 @@ import kotlinx.android.synthetic.main.activity_info_component_pending.*
 import kotlinx.android.synthetic.main.pop_up.*
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.MultipartBody
+import okhttp3.RequestBody.Companion.toRequestBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -220,12 +223,39 @@ class InfoComponentPending : AppCompatActivity() {
                         it.designation,
                         it.productType,
                         it.initialAmount,
-                        doc
+                        ArrayList()
                     )
                     val createActivity =
-                        CreateActivity(inputProductLots, it.designationActivity, outputProductLot)
+                        CreateActivity(
+                            inputProductLots,
+                            it.designationActivity,
+                            outputProductLot.referenceNumber,
+                            outputProductLot.isSerialNumber,
+                            outputProductLot.designation,
+                            outputProductLot.productType,
+                            outputProductLot.initialAmount,
+                            outputProductLot.documents
+                        )
+
                     val request = ServiceBuilder.buildService(APIService::class.java)
-                    val call = request.createActivity("Bearer $token", createActivity)
+
+                    val requestBody = MultipartBody.Builder().setType(MultipartBody.FORM).apply {
+                        addFormDataPart("designation", createActivity.designation)
+                        createActivity.inputProductLots.forEach { inputProductLot ->
+                            addFormDataPart("inputProductLots[${inputProductLot.key}]", inputProductLot.value)
+                        }
+                        addFormDataPart("outputReferenceNumber", createActivity.outputReferenceNumber)
+                        addFormDataPart("outputIsSerialNumber", createActivity.outputIsSerialNumber.toString())
+                        addFormDataPart("outputProductType", createActivity.outputProductType)
+                        addFormDataPart("outputInitialAmount", createActivity.outputInitialAmount.toString())
+                        addFormDataPart("outputDesignation", createActivity.outputDesignation)
+
+                        createActivity.outputDocuments.forEachIndexed { index, file ->
+                            addFormDataPart("documents", "$index." + file.extension, file.readBytes().toRequestBody("multipart/form-data".toMediaTypeOrNull(), 0, file.readBytes().size))
+                        }
+                    }.build()
+
+                    val call = request.createActivity("Bearer $token", requestBody)
 
                     call.enqueue(object : Callback<String> {
                         override fun onResponse(call: Call<String>, response: Response<String>) {

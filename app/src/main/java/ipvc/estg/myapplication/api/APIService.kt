@@ -1,6 +1,7 @@
 package ipvc.estg.myapplication.api
 
 import ipvc.estg.myapplication.models.*
+import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -23,13 +24,13 @@ interface APIService {
     @POST("/api/v1/traceability/activity")
     fun createActivity(
         @Header("Authorization") authHeader: String?,
-        @Body body: CreateActivity
+        @Body body: RequestBody
     ): Call<String>
 
     @POST("/api/v1/traceability/product")
     fun createProduct(
         @Header("Authorization") authHeader: String?,
-        @Body body: CreateProductLot
+        @Body body: RequestBody
     ): Call<String>
 
     @GET("/api/v1/traceability/product")

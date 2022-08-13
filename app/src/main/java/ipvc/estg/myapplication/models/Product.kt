@@ -8,6 +8,6 @@ data class Product(
     val productType: String,
     val initialQuantity: Int,
     val availableQuantity: Int,
-    val documentKeys: ArrayList<String>,
+    val documentKeys: ArrayList<Documentkey>,
     val ID: String
 )
