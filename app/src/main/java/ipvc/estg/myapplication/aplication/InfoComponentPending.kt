@@ -26,9 +26,7 @@ import kotlinx.android.synthetic.main.activity_info_component_pending.*
 import kotlinx.android.synthetic.main.pop_up.*
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
-import okhttp3.RequestBody.Companion.toRequestBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -251,7 +249,8 @@ class InfoComponentPending : AppCompatActivity() {
                         addFormDataPart("outputDesignation", createActivity.outputDesignation)
 
                         createActivity.outputDocuments.forEachIndexed { index, file ->
-                            addFormDataPart("documents", "$index." + file.extension, file.readBytes().toRequestBody("multipart/form-data".toMediaTypeOrNull(), 0, file.readBytes().size))
+                            //Handle documents, follow AddComponent logic
+//                            addFormDataPart("documents", "$index." + file.extension, file.readBytes().toRequestBody("multipart/form-data".toMediaTypeOrNull(), 0, file.readBytes().size))
                         }
                     }.build()
 

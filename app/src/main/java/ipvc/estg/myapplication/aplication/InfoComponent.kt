@@ -31,6 +31,7 @@ import retrofit2.Callback
 import retrofit2.Response
 
 const val PARAM_Reference_Number_PARENT = "RefParent"
+const val REFERENCE_NUMBER_PARAM = "REFERENCE_NUMBER_PARAM"
 
 class InfoComponent : AppCompatActivity() {
 
@@ -272,6 +273,14 @@ class InfoComponent : AppCompatActivity() {
         val refNum = findViewById<TextView>(R.id.valueReferenceNumberInfoComponent).text.toString()
         val intent = Intent(this@InfoComponent, AddComponent::class.java).apply {
             putExtra(PARAM_Reference_Number_PARENT, refNum)
+        }
+        startActivity(intent)
+    }
+
+    fun sendToShowDocuments(view: View) {
+        val referenceNumber = intent.getStringExtra(PARAM_Reference_Number)
+        val intent = Intent(this@InfoComponent, AssociatedDocuments::class.java).apply {
+            putExtra(REFERENCE_NUMBER_PARAM, referenceNumber)
         }
         startActivity(intent)
     }

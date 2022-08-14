@@ -143,6 +143,7 @@
                     android:layout_marginTop="40dp"
                     android:layout_marginBottom="10dp"
                     android:text="@string/tv_show_documents"
+                    android:onClick="sendToShowDocuments"
                     android:textColor="@color/red" />
 
             </RelativeLayout>
@@ -177,7 +178,7 @@
         android:id="@+id/listAssoComp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/btnAddAssociatedComponent"
+        android:layout_above="@+id/bottom_navigation"
         android:layout_below="@+id/associatedComponentesInfoComponent" />
 
     <TextView
@@ -194,15 +195,15 @@
         android:visibility="invisible" />
 
 
-    <Button
-        android:id="@+id/btnAddAssociatedComponent"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/bottom_navigation"
-        android:layout_marginLeft="310dp"
-        android:background="@android:color/transparent"
-        android:drawableEnd="@drawable/ic_baseline_add_circle_24"
-        android:onClick="sendToAdd" />
+<!--    <Button-->
+<!--        android:id="@+id/btnAddAssociatedComponent"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_above="@+id/bottom_navigation"-->
+<!--        android:layout_marginLeft="310dp"-->
+<!--        android:background="@android:color/transparent"-->
+<!--        android:drawableEnd="@drawable/ic_baseline_add_circle_24"-->
+<!--        android:onClick="sendToAdd" />-->
 
 
     <com.google.android.material.bottomnavigation.BottomNavigationView

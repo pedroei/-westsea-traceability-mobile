@@ -13,9 +13,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.WeastseaMobileAPP"
-        android:usesCleartextTraffic="true"
-
-        >
+        android:usesCleartextTraffic="true">
+        <activity
+            android:name=".aplication.AssociatedDocuments"
+            android:exported="false" />
         <activity
             android:name=".aplication.ListPending"
             android:exported="false" />

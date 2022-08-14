@@ -1,6 +1,6 @@
 package ipvc.estg.myapplication.models
 
-import java.io.File
+import android.net.Uri
 
 data class CreateActivity(
     val inputProductLots: HashMap<String, String>,
@@ -10,5 +10,5 @@ data class CreateActivity(
     val outputDesignation: String,
     val outputProductType: String,
     val outputInitialAmount: Int,
-    val outputDocuments: ArrayList<File>
+    val outputDocuments: ArrayList<Uri>
 )

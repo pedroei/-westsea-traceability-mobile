@@ -163,7 +163,7 @@ class ListComponents : AppCompatActivity() {
         }
     }
 
-
+    //FIXME: does it work?
     suspend fun getProductsSearch() {
         val filtro = findViewById<Spinner>(R.id.filterListComp).selectedItem.toString()
         var canGO = false

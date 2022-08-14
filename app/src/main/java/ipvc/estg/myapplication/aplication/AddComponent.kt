@@ -3,7 +3,9 @@ package ipvc.estg.myapplication.aplication
 import android.app.Dialog
 import android.content.Context
 import android.content.Intent
+import android.content.Intent.EXTRA_ALLOW_MULTIPLE
 import android.content.SharedPreferences
+import android.net.Uri
 import android.os.Bundle
 import android.view.*
 import android.widget.Button
@@ -15,6 +17,7 @@ import ipvc.estg.myapplication.R
 import ipvc.estg.myapplication.api.APIService
 import ipvc.estg.myapplication.api.ServiceBuilder
 import ipvc.estg.myapplication.models.CreateProductLot
+import ipvc.estg.myapplication.utils.Utils.getBytes
 import kotlinx.android.synthetic.main.activity_add_component.*
 import kotlinx.android.synthetic.main.pop_up.*
 import kotlinx.coroutines.GlobalScope
@@ -25,6 +28,7 @@ import okhttp3.RequestBody.Companion.toRequestBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.io.InputStream
 
 
 const val PARAM_referenceNumber = "referenceNumber"
@@ -33,9 +37,11 @@ const val PARAM_designation = "designation"
 const val PARAM_type = "type"
 const val PARAM_amount = "amount"
 const val PARAM_Reference_Number_Parent = "parent"
-
+const val PARAM_selected_files_uris = "selectedFilesUris"
 
 class AddComponent : AppCompatActivity() {
+
+    private var selectedFilesUris: ArrayList<Uri> = ArrayList();
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -116,8 +122,11 @@ class AddComponent : AppCompatActivity() {
                     putExtra(PARAM_type, type.text.toString())
                     putExtra(PARAM_amount, amount.text.toString())
                     putExtra(PARAM_Reference_Number_Parent, referenceNumberParent)
-
+                    putExtra(PARAM_selected_files_uris, selectedFilesUris.map {
+                        it.toString()
+                    }.toCollection(ArrayList()))
                 }
+
                 startActivity(intent)
             } else {
                 val intent = Intent(this@AddComponent, AssociateComponent::class.java).apply {
@@ -126,7 +135,9 @@ class AddComponent : AppCompatActivity() {
                     putExtra(PARAM_designation, designation.text.toString())
                     putExtra(PARAM_type, type.text.toString())
                     putExtra(PARAM_amount, amount.text.toString())
+                    putExtra(PARAM_selected_files_uris, selectedFilesUris.toString())
                 }
+
                 startActivity(intent)
             }
 
@@ -236,7 +247,7 @@ class AddComponent : AppCompatActivity() {
                 designation.toString(),
                 type.toString(),
                 amount.toString().toInt(),
-                ArrayList()
+                selectedFilesUris
             )
 
             val request = ServiceBuilder.buildService(APIService::class.java)
@@ -249,8 +260,19 @@ class AddComponent : AppCompatActivity() {
                 addFormDataPart("initialAmount", (createProductLot.initialAmount.toString()))
 
                 if (createProductLot.documents.isNotEmpty()) {
-                    createProductLot.documents.forEachIndexed { index, file ->
-                        addFormDataPart("documents", "$index." + file.extension, file.readBytes().toRequestBody("multipart/form-data".toMediaTypeOrNull(), 0, file.readBytes().size))
+                    createProductLot.documents.forEach { fileUri ->
+                        val iStream: InputStream? = contentResolver.openInputStream(fileUri)
+                        val inputData: ByteArray? = getBytes(iStream!!)
+
+                        addFormDataPart(
+                            "documents",
+                            fileUri.getLastPathSegment(),
+                            inputData!!.toRequestBody(
+                                "multipart/form-data".toMediaTypeOrNull(),
+                                0,
+                                inputData.size
+                            )
+                        )
                     }
                 }
             }.build()
@@ -279,5 +301,21 @@ class AddComponent : AppCompatActivity() {
         }
     }
 
-    fun insertDocuments(view: View) {}
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (requestCode == 111 && resultCode == RESULT_OK) {
+            selectedFilesUris.add(data?.data!!)
+        }
+    }
+
+    fun insertDocuments(view: View) {
+        val intent = Intent()
+            .setType("*/*")
+            .setAction(Intent.ACTION_GET_CONTENT)
+            .putExtra(EXTRA_ALLOW_MULTIPLE, false)
+
+        startActivityForResult(Intent.createChooser(intent, "Select a file"), 111)
+    }
 }

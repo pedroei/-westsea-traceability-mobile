@@ -6,6 +6,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.graphics.Color
+import android.net.Uri
 import android.os.Bundle
 import android.view.*
 import android.widget.*
@@ -18,6 +19,7 @@ import ipvc.estg.myapplication.models.ActivityDesignation
 import ipvc.estg.myapplication.models.CreateActivity
 import ipvc.estg.myapplication.models.CreateProductLot
 import ipvc.estg.myapplication.models.Product
+import ipvc.estg.myapplication.utils.Utils.getBytes
 import kotlinx.android.synthetic.main.activity_associate_component.*
 import kotlinx.android.synthetic.main.pop_up.*
 import kotlinx.coroutines.GlobalScope
@@ -28,6 +30,7 @@ import okhttp3.RequestBody.Companion.toRequestBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.io.InputStream
 
 
 class AssociateComponent : AppCompatActivity() {
@@ -266,6 +269,21 @@ class AssociateComponent : AppCompatActivity() {
                 val designation = intent.getStringExtra(PARAM_designation).toString()
                 val type = intent.getStringExtra(PARAM_type).toString()
                 val amount = intent.getStringExtra(PARAM_amount).toString().toInt()
+                val selectedFilesUriString = intent.getStringExtra(PARAM_selected_files_uris)
+
+                // parse string with the array into the arrayList
+                val selectedFilesUriStrings = selectedFilesUriString!!.removeSurrounding("[", "]")
+                    .takeIf(String::isNotEmpty)
+                    ?.split(", ")
+                    ?: emptyList()
+
+                var selectedFilesUris: ArrayList<Uri> = ArrayList()
+
+                if (selectedFilesUriStrings != null && !selectedFilesUriStrings.isEmpty()) {
+                    selectedFilesUris = selectedFilesUriStrings.map {
+                        Uri.parse(it)
+                    }.toCollection(ArrayList())
+                }
 
                 if (inputComponents.isEmpty() || activityDesignationValue == "") {
                     runOnUiThread {
@@ -282,7 +300,7 @@ class AssociateComponent : AppCompatActivity() {
                         designation,
                         type,
                         amount,
-                        ArrayList()
+                        selectedFilesUris
                     )
 
                     val createActivity =
@@ -302,18 +320,42 @@ class AssociateComponent : AppCompatActivity() {
                     val requestBody = MultipartBody.Builder().setType(MultipartBody.FORM).apply {
                         addFormDataPart("designation", createActivity.designation)
                         createActivity.inputProductLots.forEach { inputProductLot ->
-                            addFormDataPart("inputProductLots[${inputProductLot.key}]", inputProductLot.value)
+                            addFormDataPart(
+                                "inputProductLots[${inputProductLot.key}]",
+                                inputProductLot.value
+                            )
                         }
-                        addFormDataPart("outputReferenceNumber", createActivity.outputReferenceNumber)
-                        addFormDataPart("outputIsSerialNumber", createActivity.outputIsSerialNumber.toString())
+                        addFormDataPart(
+                            "outputReferenceNumber",
+                            createActivity.outputReferenceNumber
+                        )
+                        addFormDataPart(
+                            "outputIsSerialNumber",
+                            createActivity.outputIsSerialNumber.toString()
+                        )
                         addFormDataPart("outputProductType", createActivity.outputProductType)
-                        addFormDataPart("outputInitialAmount", createActivity.outputInitialAmount.toString())
+                        addFormDataPart(
+                            "outputInitialAmount",
+                            createActivity.outputInitialAmount.toString()
+                        )
                         addFormDataPart("outputDesignation", createActivity.outputDesignation)
 
                         if (createActivity.outputDocuments.isNotEmpty()) {
-                            createActivity.outputDocuments.forEachIndexed { index, file ->
-                                addFormDataPart("outputDocuments", "$index." + file.extension, file.readBytes().toRequestBody("multipart/form-data".toMediaTypeOrNull(), 0, file.readBytes().size))
+                            createActivity.outputDocuments.forEach { fileUri ->
+                                val iStream: InputStream? = contentResolver.openInputStream(fileUri)
+                                val inputData: ByteArray? = getBytes(iStream!!)
+
+                                addFormDataPart(
+                                    "outputDocuments",
+                                    fileUri.getLastPathSegment(),
+                                    inputData!!.toRequestBody(
+                                        "multipart/form-data".toMediaTypeOrNull(),
+                                        0,
+                                        inputData.size
+                                    )
+                                )
                             }
+
                         }
                     }.build()
 

@@ -1,6 +1,6 @@
 package ipvc.estg.myapplication.models
 
-import java.io.File
+import android.net.Uri
 
 data class CreateProductLot(
     val referenceNumber: String,
@@ -8,5 +8,5 @@ data class CreateProductLot(
     val designation: String,
     val productType: String,
     val initialAmount: Int,
-    val documents: ArrayList<File>
+    val documents: ArrayList<Uri>
 )
