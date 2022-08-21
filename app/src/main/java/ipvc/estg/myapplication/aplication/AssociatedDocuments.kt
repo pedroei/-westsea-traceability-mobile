@@ -5,7 +5,6 @@ import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
-import android.util.Log
 import android.view.*
 import android.widget.Button
 import android.widget.TextView
@@ -16,10 +15,12 @@ import ipvc.estg.myapplication.R
 import ipvc.estg.myapplication.api.APIService
 import ipvc.estg.myapplication.api.ServiceBuilder
 import ipvc.estg.myapplication.models.Product
+import kotlinx.android.synthetic.main.dialog_pdf_viewer.*
 import kotlinx.android.synthetic.main.pop_up.*
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import okhttp3.ResponseBody
 import pl.droidsonroids.gif.GifImageView
 import retrofit2.Call
 import retrofit2.Callback
@@ -63,6 +64,12 @@ class AssociatedDocuments : AppCompatActivity() {
                 if (response.isSuccessful) {
                     product = response.body()!!
                         .filter { it.referenceNumber == referenceNumber }[0]
+
+                    GlobalScope.launch {
+                        //FIXME: for now only shows the first, implemment all
+//                        showPdf(product)
+                    }
+
                     canGO = true
                 } else {
                     createPopUp(getString(R.string.invalid_token))
@@ -85,11 +92,74 @@ class AssociatedDocuments : AppCompatActivity() {
         runOnUiThread {
             valueNameTitleInfoComponent.text = product.designation
             loading.visibility = View.INVISIBLE
-
-            Log.d("TESTING... ", product.toString())
-            Toast.makeText(this@AssociatedDocuments, "${product.documentKeys}", Toast.LENGTH_SHORT)
-                .show()
         }
+    }
+
+    private suspend fun showPdf(prod: Product) {
+        if (prod.documentKeys.isNotEmpty()) {
+            var canGO = false
+            val sharedPreferences: SharedPreferences =
+                getSharedPreferences("tokenSP", Context.MODE_PRIVATE)
+            val token = sharedPreferences.getString("token", "")
+
+            val request = ServiceBuilder.buildService(APIService::class.java)
+            val call = request.downloadDocument(
+                "Bearer $token",
+                prod.ID,
+                prod.documentKeys.get(0).documentKey
+            )
+
+            call.enqueue(object : Callback<ResponseBody> {
+                override fun onResponse(
+                    call: Call<ResponseBody>,
+                    response: Response<ResponseBody>
+                ) {
+                    if (response.isSuccessful) {
+                        val byteArray = response.body()!!.bytes()
+                        createDialogHelp(byteArray)
+
+                        canGO = true
+                    } else {
+                        createPopUp(getString(R.string.invalid_token))
+                        canGO = true
+                    }
+
+                }
+
+                override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
+                    canGO = true
+                    Toast.makeText(
+                        this@AssociatedDocuments,
+                        "${t.message}",
+                        Toast.LENGTH_SHORT
+                    )
+                        .show()
+                }
+            })
+            while (!canGO) {
+                delay(1)
+            }
+        }
+
+    }
+
+    private fun createDialogHelp(fileBytes: ByteArray) {
+        val dialog = Dialog(this@AssociatedDocuments)
+        dialog.setContentView(R.layout.dialog_pdf_viewer)
+        dialog.window?.setBackgroundDrawable(getDrawable(R.drawable.pop_up_background))
+        dialog.window?.setLayout(
+            ViewGroup.LayoutParams.WRAP_CONTENT,
+            ViewGroup.LayoutParams.WRAP_CONTENT
+        )
+        dialog.setCancelable(false)
+        dialog.show()
+
+        dialog.findViewById<TextView>(R.id.iconClosePdfViewer).setOnClickListener {
+            dialog.dismiss()
+        }
+
+        dialog.pdfView.fromBytes(fileBytes).load()
+
     }
 
     fun createPopUp(msg: String) {

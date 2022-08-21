@@ -134,17 +134,18 @@
                     android:layout_toRightOf="@+id/quantidadeInfoComponent"
                     android:textSize="15sp" />
 
-                <TextView
-                    android:id="@+id/showDocumentsInfoComponent"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/valueQuantidadeInfoComponent"
-                    android:layout_alignLeft="@id/referenceNumberCompInfoComponent"
-                    android:layout_marginTop="40dp"
-                    android:layout_marginBottom="10dp"
-                    android:text="@string/tv_show_documents"
-                    android:onClick="sendToShowDocuments"
-                    android:textColor="@color/red" />
+<!--can add a file viewer-->
+<!--                <TextView-->
+<!--                    android:id="@+id/showDocumentsInfoComponent"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_below="@+id/valueQuantidadeInfoComponent"-->
+<!--                    android:layout_alignLeft="@id/referenceNumberCompInfoComponent"-->
+<!--                    android:layout_marginTop="40dp"-->
+<!--                    android:layout_marginBottom="10dp"-->
+<!--                    android:text="@string/tv_show_documents"-->
+<!--                    android:onClick="sendToShowDocuments"-->
+<!--                    android:textColor="@color/red" />-->
 
             </RelativeLayout>
         </ScrollView>
